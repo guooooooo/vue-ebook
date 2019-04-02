@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <div id="read"></div>
+    <span class="text">hello fontface</span>
+    <span class="icon-bookmark"></span>
   </div>
 </template>
 
@@ -9,13 +10,12 @@ import Epub from 'epubjs'
 global.ePub = Epub
 
 export default {
-  name: 'home',
-  mounted() {
-    this.book = new Epub('/2018_Book_AgileProcessesInSoftwareEngine.epub')
-    this.book.renderTo('read', {
-      width: window.innerWidth,
-      height: window.innerHeight
-    }).display()
-  }
 }
 </script>
+
+<style scoped>
+  .text {
+    font-family: 'Days One';
+    font-size: 30px;
+  }
+</style>
