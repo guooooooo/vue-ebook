@@ -17,7 +17,7 @@ export default {
     })
   },
   computed: {
-    ...mapGetters(['fileName'])
+    ...mapGetters(['fileName', 'menuVisible'])
   },
   methods: {
     initEpub () {
@@ -50,14 +50,20 @@ export default {
     prevPage () {
       if (this.rendition) {
         this.rendition.prev()
+        this.hideTitleAndMenu()
       }
     },
     nextPage () {
       if (this.rendition) {
         this.rendition.next()
+        this.hideTitleAndMenu()
       }
     },
     toggleTitleAndMenu () {
+      this.$store.dispatch('setMenuVisible', !this.menuVisible)
+    },
+    hideTitleAndMenu () {
+      this.$store.dispatch('setMenuVisible', false)
     }
   }
 }
