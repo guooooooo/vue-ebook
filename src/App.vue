@@ -1,38 +1,30 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>-->
-    </div>
-    <span class="text">hello fontface</span>
     <router-view/>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
-export default {
-  computed: {
-    ...mapGetters(['value'])
-  },
-  mounted () {
-    this.$store.dispatch('setState', 2).then(() => {
-      console.log(this.value)
-    })
-  }
-}
+export default {}
 document.addEventListener('DOMContentLoaded', () => {
-  const html = document.querySelector('html')
   let fontSize = window.innerWidth / 10
   fontSize = fontSize > 50 ? 50 : fontSize
+  const html = document.querySelector('html')
   html.style.fontSize = fontSize + 'px'
 })
 </script>
 
 <style scoped>
-.text {
-  font-family: "Days One";
-  font-size: 1rem;
+#app {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background: #7d8188;
+  overflow: hidden;
 }
 </style>

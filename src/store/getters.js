@@ -1,5 +1,5 @@
 const book = {
-  value: state => state.book.value
+  fileName: state => state.book.fileName
 }
 
 export default book
