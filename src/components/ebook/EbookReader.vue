@@ -5,20 +5,18 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { mapGetters } from 'vuex'
+import { ebookMixin } from '../../utils/mixin'
 import Epub from 'epubjs'
 global.ePub = Epub
 
 export default {
   mounted () {
     let fileName = this.$route.params.fileName.split('|').join('/')
-    this.$store.dispatch('setFilename', fileName).then(() => {
+    this.setFilename(fileName).then(() => {
       this.initEpub()
     })
   },
-  computed: {
-    ...mapGetters(['fileName', 'menuVisible'])
-  },
+  mixins: [ebookMixin],
   methods: {
     initEpub () {
       let baseUrl = 'http://localhost:8091/epub/'
@@ -60,10 +58,10 @@ export default {
       }
     },
     toggleTitleAndMenu () {
-      this.$store.dispatch('setMenuVisible', !this.menuVisible)
+      this.setMenuVisible(!this.menuVisible)
     },
     hideTitleAndMenu () {
-      this.$store.dispatch('setMenuVisible', false)
+      this.setMenuVisible(false)
     }
   }
 }
