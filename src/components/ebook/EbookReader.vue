@@ -12,7 +12,7 @@ global.ePub = Epub
 export default {
   mounted () {
     let fileName = this.$route.params.fileName.split('|').join('/')
-    this.setFilename(fileName).then(() => {
+    this.setFileName(fileName).then(() => {
       this.initEpub()
     })
   },
@@ -22,6 +22,7 @@ export default {
       let baseUrl = 'http://localhost:8091/epub/'
       let url = `${baseUrl}${this.fileName}.epub`
       this.book = new Epub(url)
+      this.setCurrentBook(this.book)
       this.rendition = this.book.renderTo('read', {
         width: innerWidth,
         height: innerHeight
@@ -58,10 +59,14 @@ export default {
       }
     },
     toggleTitleAndMenu () {
+      if (this.menuVisible) {
+        this.setSettingVisible(-1)
+      }
       this.setMenuVisible(!this.menuVisible)
     },
     hideTitleAndMenu () {
       this.setMenuVisible(false)
+      this.setSettingVisible(-1)
     }
   }
 }
